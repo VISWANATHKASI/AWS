@@ -27,7 +27,7 @@ sudo blkid --> to get id's of volumes
 
 sudo vim /etc/fstab
 
-UUID=7181112f-6bd0-4278-8d25-bd6ea7b7250c  /Add_volume  xfs  defaults,nofail  0  2  --> update UUID in this command which you got in above commnad.
+UUID=4c28db83-9cc9-4388-92e7-a0ba3fe4cd60  /Add_volume  xfs  defaults,nofail  0  2  --> update UUID in this command which you got in above commnad.
 
 
 
