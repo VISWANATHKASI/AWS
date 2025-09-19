@@ -1,0 +1,40 @@
+
+lsblk
+
+sudo file -s /dev/xvdf   --> to know whether volume has any file system or not
+
+sudo mkfs -t xfs /dev/xvdf  --> execute this command if there is no file system.
+
+#if you get any error in above command, use below commands
+#  sudo yum install xfsprogs
+#  sudo mkfs -t xfs /dev/xvdf
+
+sudo mkdir /Add_volume   --> create dir to mount add volume
+
+sudo mount /dev/xvdf /Add_volume  --> use this command to mount additional volume to created directory.
+
+# sudo mount /dev/xvdf1 /data  --> use this command if volumes has partitions.
+
+
+Note:
+We mounted the additional volume to instance for use but it will be unmounted if we reboot or restart the instance. to avoid this issue, follow below steps.
+
+sudo cp /etc/fstab /etc/fstab.orig --> creating backup
+
+sudo blkid --> to get id's of volumes
+
+# sudo lsblk -o +UUID  --> for ubuntu to get id's of volumes
+
+sudo vim /etc/fstab
+
+UUID=7181112f-6bd0-4278-8d25-bd6ea7b7250c  /Add_volume  xfs  defaults,nofail  0  2  --> update UUID in this command which you got in above commnad.
+
+
+
+To Veify whether it is working or not:
+======================================
+sudo umount /Add_volume
+sudo mount -a
+
+
+
