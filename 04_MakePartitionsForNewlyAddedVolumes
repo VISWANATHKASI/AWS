@@ -17,3 +17,24 @@ sudo mkfs.ext4 /dev/xvdf1
 
 #If you want xfs:
 #sudo mkfs.xfs /dev/xvdf1
+
+
+Note:
+We mounted the additional volume to instance for use but it will be unmounted if we reboot or restart the instance. to avoid this issue, follow below steps.
+
+sudo cp /etc/fstab /etc/fstab.orig --> creating backup
+
+sudo blkid --> to get id's of volumes
+
+# sudo lsblk -o +UUID  --> for ubuntu to get id's of volumes
+
+sudo vim /etc/fstab
+
+UUID=4c28db83-9cc9-4388-92e7-a0ba3fe4cd60  /Add_volume  xfs  defaults,nofail  0  2  --> update UUID in this command which you got in above commnad.
+
+
+
+To Veify whether it is working or not:
+======================================
+sudo umount /Add_volume
+sudo mount -a
