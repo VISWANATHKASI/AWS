@@ -1,8 +1,6 @@
 
 sudo lsblk
 
-# fdisk /dev/xvdf --> to make partitions for new attached additional volume
-
 sudo growpart /dev/xvda 4
 
 sudo lsblk
@@ -14,3 +12,7 @@ sudo xfs_growfs -d /
 df -hT
 
 #sudo resize2fs /dev/xvda4
+
+
+
+
