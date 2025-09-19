@@ -1,0 +1,13 @@
+Press Windows + R, type cmd, and press Enter.
+
+In the Command Prompt, type: diskpart
+
+Once inside diskpart, type: list disk
+
+Identify the disk you want to work with (in your case, it seems to be Disk 1).
+
+Select the disk by typing: select disk 1
+
+Then, remove the write protection with the command: attributes disk clear readonly
+
+After that, you can try to format or initialize the disk again.
