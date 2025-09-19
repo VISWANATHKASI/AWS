@@ -1,0 +1,3 @@
+mount -o nouuid /dev/xvdf4 /volume/xvdf
+
+cp /home/ec2-user/.ssh/authorized_keys /volume1/home/ec2-user/.ssh/authorized_keys
