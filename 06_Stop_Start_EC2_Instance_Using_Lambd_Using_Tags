@@ -1,0 +1,94 @@
+Policy to attach to role:
+========================
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogGroup",
+				"logs:CreateLogStream",
+				"logs:PutLogEvents"
+			],
+			"Resource": "arn:aws:logs:*:*:*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:DescribeInstances",
+				"ec2:Start*",
+				"ec2:Stop*"
+			],
+			"Resource": "*"
+		}
+	]
+}
+
+
+
+Stop Function:
+=============
+
+import boto3
+
+region = 'ap-south-1'
+ec2 = boto3.client('ec2', region_name=region)
+
+def lambda_handler(event, context):
+    """
+    Stops running EC2 instances with a specific tag.
+    """
+    filters = [
+        {'Name': 'instance-state-name', 'Values': ['running']},
+        {'Name': 'tag:stop_start', 'Values': ['yes']}
+    ]
+
+    # Use describe_instances to find matching instances
+    instances_to_stop = ec2.describe_instances(Filters=filters)
+
+    instance_ids = []
+    for reservation in instances_to_stop['Reservations']:
+        for instance in reservation['Instances']:
+            instance_ids.append(instance['InstanceId'])
+
+    if instance_ids:
+        ec2.stop_instances(InstanceIds=instance_ids)
+        print(f"Stopped the following instances: {instance_ids}")
+    else:
+        print("No instances found with the specified tag and state.")
+
+
+
+
+Start Function:
+==============
+
+import boto3
+
+region = 'ap-south-1'
+ec2 = boto3.client('ec2', region_name=region)
+
+def lambda_handler(event, context):
+    """
+    Stops running EC2 instances with a specific tag.
+    """
+    filters = [
+        {'Name': 'instance-state-name', 'Values': ['stopped']},
+        {'Name': 'tag:stop_start', 'Values': ['yes']}
+    ]
+
+    # Use describe_instances to find matching instances
+    instances_to_stop = ec2.describe_instances(Filters=filters)
+
+    instance_ids = []
+    for reservation in instances_to_stop['Reservations']:
+        for instance in reservation['Instances']:
+            instance_ids.append(instance['InstanceId'])
+
+    if instance_ids:
+        ec2.start_instances(InstanceIds=instance_ids)
+        print(f"Stopped the following instances: {instance_ids}")
+    else:
+        print("No instances found with the specified tag and state.")
+
