@@ -13,9 +13,12 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 # to check status of cloud watch
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
 
+----------------------------
+
 # to check errors if you don't see any logs in cloudwatch
 sudo cat /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log
 
+----------------------------
 
 ls -l /var/log/cloud-init.log  --> to check owner & group of file
 sudo usermod -aG adm cwagent  --> to add cwagent to adm group.
