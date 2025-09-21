@@ -1,5 +1,5 @@
 yum install -y nfs-utils
 cd /
 mkdir efs
-mount -t nfs4 fs-00fbe2ec4d64537f6.efs.eu-west-1.amazonaws.com:/ efs/
+mount -t nfs4 fs-05e7143166d7eac96.efs.ap-south-1.amazonaws.com:/ efs/
 cd efs
