@@ -7,17 +7,18 @@ sudo yum install -y ./amazon-cloudwatch-agent.rpm
 
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
 
-# to check errors if you don't see any logs in cloudwatch
-sudo cat /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log
-
-ls -l /var/log/cloud-init.log  --> to check owner & group of file
-sudo usermod -aG adm cwagent  --> to add cwagent to adm group.
-
 # to start the cloud watch
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
 
 # to check status of cloud watch
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+
+# to check errors if you don't see any logs in cloudwatch
+sudo cat /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log
+
+
+ls -l /var/log/cloud-init.log  --> to check owner & group of file
+sudo usermod -aG adm cwagent  --> to add cwagent to adm group.
 
 or edit user in below file
 sudo nano /opt/aws/amazon-cloudwatch-agent/bin/config.json
