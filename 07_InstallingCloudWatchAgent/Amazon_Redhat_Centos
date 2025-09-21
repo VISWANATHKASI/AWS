@@ -5,10 +5,6 @@ yum install wget -y
 wget https://s3.amazonaws.com/amazoncloudwatch-agent/redhat/amd64/latest/amazon-cloudwatch-agent.rpm
 sudo yum install -y ./amazon-cloudwatch-agent.rpm
 
-# Debian, Ubuntu
-wget https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/amazon-cloudwatch-agent.deb
-sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
-
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
 
 # to check errors if you don't see any logs in cloudwatch
