@@ -16,3 +16,15 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 
 # to check errors if you don't see any logs in cloudwatch
 sudo cat /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log
+
+ls -l /var/log/cloud-init.log  --> to check owner & group of file
+sudo usermod -aG adm cwagent  --> to add cwagent to adm group.
+
+
+or edit user in below file
+sudo nano /opt/aws/amazon-cloudwatch-agent/bin/config.json
+
+"agent": {
+  "metrics_collection_interval": 60,
+  "run_as_user": "root"
+}
