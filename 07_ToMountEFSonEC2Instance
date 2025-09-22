@@ -4,6 +4,6 @@ Note: make sure to add NFS(2049) in Security group which is EFS port number
 yum install -y nfs-utils
 cd /
 mkdir efs
-mount -t nfs4 fs-0329c128782b41761.efs.ap-south-1.amazonaws.com:/ efs/
+mount -t nfs4 fs-0dcaf56bcb4422b47.efs.ap-south-1.amazonaws.com:/ efs/
 # sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-05e7143166d7eac96.efs.ap-south-1.amazonaws.com:/ efs/
 cd efs
