@@ -1,0 +1,16 @@
+execute this in aws cli after updating region:
+=============================================
+aws ssm get-parameter --name /aws/service/datasync/ami --region ap-south-1
+
+
+take ami id from output of above execution:
+==========================================
+ami-036c76d88c3a596eb
+
+
+try to access this in browser after updating region & ami id:
+============================================================
+https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-036c76d88c3a596eb        --> it will direct you to launch instance with datasync agent ami.
+
+
+Note: make sure to provide NFS, http, ssh, https protocol in security group
